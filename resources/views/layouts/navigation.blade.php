@@ -3,19 +3,37 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
+
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ url('/') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('boardgames.index')" :active="request()->routeIs('boardgames.*')">
+                        {{ __('app.boardgames') }}
                     </x-nav-link>
+                    <x-nav-link :href="url('/gamenights')" :active="request()->is('gamenights*')">
+                        {{ __('app.gamenights') }}
+                    </x-nav-link>
+
+                    @auth
+                        @if(auth()->user()->role === 'admin')
+                            <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                                {{ __('app.dashboard') }}
+                            </x-nav-link>
+                        @endif
+                    @endauth
                 </div>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="px-4 pt-2">
+                <a href="{{ route('lang.switch', 'en') }}">EN</a>
+                <a href="{{ route('lang.switch', 'lt') }}">LT</a>
             </div>
 
             <!-- Settings Dropdown -->
@@ -36,17 +54,14 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('app.profile') }}
                             </x-dropdown-link>
 
-                            <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-
                                 <x-dropdown-link :href="route('logout')"
-                                                 onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                                 onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('app.logout') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -55,8 +70,8 @@
 
                 @guest
                     <div class="space-x-4">
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 hover:text-gray-900">{{ __('Login') }}</a>
-                        <a href="{{ route('register') }}" class="text-sm text-gray-700 hover:text-gray-900">{{ __('Register') }}</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 hover:text-gray-900">{{ __('app.login') }}</a>
+                        <a href="{{ route('register') }}" class="text-sm text-gray-700 hover:text-gray-900">{{ __('app.register') }}</a>
                     </div>
                 @endguest
             </div>
@@ -76,9 +91,26 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+            <x-responsive-nav-link :href="route('boardgames.index')" :active="request()->routeIs('boardgames.*')">
+                {{ __('app.boardgames') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="url('/gamenights')" :active="request()->is('gamenights*')">
+                {{ __('app.gamenights') }}
+            </x-responsive-nav-link>
+
+            @auth
+                @can('admin')
+                    <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                        {{ __('app.dashboard') }}
+                    </x-responsive-nav-link>
+                @endcan
+            @endauth
+        </div>
+
+        <!-- Language switcher for mobile -->
+        <div class="px-4 pt-2">
+            <a href="{{ url('/language/en') }}" class="text-xs text-gray-500 hover:underline mr-2">EN</a>
+            <a href="{{ url('/language/lt') }}" class="text-xs text-gray-500 hover:underline">LT</a>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -97,9 +129,8 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-responsive-nav-link :href="route('logout')"
-                                               onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
+                                               onclick="event.preventDefault(); this.closest('form').submit();">
+                            {{ __('app.logout') }}
                         </x-responsive-nav-link>
                     </form>
                 </div>
@@ -114,10 +145,10 @@
 
                 <div class="mt-3 space-y-1">
                     <x-responsive-nav-link :href="route('login')">
-                        {{ __('Login') }}
+                        {{ __('app.login') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('register')">
-                        {{ __('Register') }}
+                        {{ __('app.register') }}
                     </x-responsive-nav-link>
                 </div>
             </div>
