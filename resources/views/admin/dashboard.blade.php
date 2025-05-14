@@ -16,10 +16,10 @@
             <table class="w-full table-auto border-collapse">
                 <thead>
                 <tr class="bg-gray-200">
-                    <th class="p-2 text-left">Name</th>
-                    <th class="p-2 text-left">Email</th>
-                    <th class="p-2 text-left">Role</th>
-                    <th class="p-2 text-left">Actions</th>
+                    <th class="p-2 text-left">{{__('app.name')}}</th>
+                    <th class="p-2 text-left">{{__('app.email')}}</th>
+                    <th class="p-2 text-left">{{__('app.role')}}</th>
+                    <th class="p-2 text-left">{{__('app.action')}}</th>
                 </tr>
                 </thead>
                 <tbody>

@@ -19,4 +19,39 @@ return[
     'medium' => 'Vidutinis',
     'high' => 'Sunkus',
         ],
+    'name' => 'Vardas',
+    'email' => 'El. Paštas',
+    'password' => 'Slaptažodis',
+    'role' => 'Vaidmuo',
+    'action' => 'Veiksmai',
+
+    'profileInformation' => 'Profilio informacija',
+    'profileDescription' => 'Atnaujinti jūsų profilio informaciją ir el. paštą',
+    'save' => 'Išsaugoti',
+    'updatePasswordInformation' => 'Pakeisti slaptažodį',
+    'updatePasswordDescription' => 'Užtikrinti kad paskyra bus saugi, naudokite ilgą ir atsitiktinį slaptažodį',
+    'currentPassword' => 'Dabartinis slaptažodis',
+    'newPassword' => 'Naujas slaptažodis',
+    'confirmPassword' => 'Pakartokite naują slaptažodį',
+    'resetPassword' => 'Atkurti slaptažodį',
+
+    'deleteAccount' => 'Ištrinti paskyrą',
+    'deleteAccountDescription' => 'Ištrynus jūsų paskyrą, visi jos ištekliai ir duomenys bus visam laikui ištrinti. Prieš ištrindami paskyrą, atsisiųskite visus duomenis ar informaciją, kurią norite išsaugoti.',
+    'close' => 'Uždaryti',
+    'cancel' => 'Atšaukti',
+    'deleteAccountWarning' => 'Ar tikrai norite ištrinti savo paskyrą?',
+    'deleteAccountWarningDescription' => 'Ištrynus jūsų paskyrą, visi jos ištekliai ir duomenys bus visam laikui ištrinti. Įveskite slaptažodį, kad patvirtintumėte, jog norite visam laikui ištrinti paskyrą.',
+
+    'rememberMe' => 'Prisiminti',
+    'forgotPassword' => 'Pamiršai slaptažodį?',
+    'forgotPasswordDescription' => 'Pamiršote slaptažodį? Jokių problemų. Tiesiog praneškite mums savo el. pašto adresą ir mes atsiųsime jums el. laišką su slaptažodžio atkūrimo nuoroda, kuri leis jums pasirinkti naują slaptažodį.',
+    'alreadyRegistered' => 'Jau prisiregistravęs?',
+    'passwordResetLink' => 'El. pašto slaptažodžio atkūrimo nuoroda',
+
+    'confirm' => 'Patvirtinti',
+    'passwordConfirmDescription' => 'Tai saugi programos sritis. Prieš tęsdami patvirtinkite slaptažodį.',
+
+    'verificationDescription' => "Dėkojame, kad užsiregistravote! Prieš pradėdami, ar galėtumėte patvirtinti savo el. pašto adresą spustelėdami nuorodą, kurią ką tik jums išsiuntėme el. paštu? Jei negavote el. laiško, mielai atsiųsime jums kitą.",
+    'verificationLinkDescription' => 'Nauja patvirtinimo nuoroda buvo išsiųsta į el. pašto adresą, kurį nurodėte registracijos metu.',
+    'resendVerification' => 'Išsiųsti patvirtinimo el. laišką dar kartą'
 ];
