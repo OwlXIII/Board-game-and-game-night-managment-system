@@ -32,8 +32,8 @@
 
             <!-- Language Switcher -->
             <div class="px-4 pt-2">
-                <a href="{{ route('lang.switch', 'en') }}">EN</a>
-                <a href="{{ route('lang.switch', 'lt') }}">LT</a>
+                <a href="{{ url('/language/en') }}">{{__('app.en')}}</a>
+                <a href="{{ url('/language/lt') }}">{{__('app.lt')}}</a>
             </div>
 
             <!-- Settings Dropdown -->

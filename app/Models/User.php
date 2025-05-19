@@ -46,31 +46,62 @@ class User extends Authenticatable
         ];
     }
 
-    public function games()
+    /**
+     * Linking to BoardGame Table
+     *
+     * @return HasMany
+     */
+    public function games() : HasMany
     {
         return $this->hasMany(BoardGame::class, 'created_by');
     }
 
-    public function gameReviews()
+    /**
+     * Linking to GameReviews Table
+     *
+     * @return HasMany
+     */
+    public function gameReviews() : HasMany
     {
         return $this->hasMany(GameReviews::class);
     }
 
-    public function gameNights()
+    /**
+     * Linking to GameNight Table
+     *
+     * @return HasMany
+     */
+    public function gameNights() : HasMany
     {
         return $this->hasMany(GameNight::class, 'created_by');
     }
 
-    public function eventParticipations()
+    /**
+     * Linking to EventParticipants Table
+     *
+     * @return HasMany
+     */
+    public function eventParticipations() : HasMany
     {
         return $this->hasMany(EventParticipants::class);
     }
 
-    public function gameSuggestions()
+    /**
+     * Linking to GameSuggestions Table
+     *
+     * @return HasMany
+     */
+    public function gameSuggestions() : HasMany
     {
         return $this->hasMany(GameSuggestions::class, 'suggested_by');
     }
-    public function isAdmin()
+
+    /**
+     * Checking if user is Admin
+     *
+     * @return bool
+     */
+    public function isAdmin() : bool
     {
         return $this->role === 'admin';
     }

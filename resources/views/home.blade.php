@@ -10,25 +10,25 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 space-y-4">
                     @auth
-                        <p class="text-xl">Hello, {{ auth()->user()->name }}!</p>
-                        <p>You can browse, rate, and suggest board games for upcoming game nights.</p>
+                        <p class="text-xl">{{__('app.hello')}}, {{ auth()->user()->name }}!</p>
+                        <p>{{__('app.dashboardDescription')}}</p>
 
                         <a href="{{ route('boardgames.index') }}"
                            class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                            Explore Board Games
+                            {{__('app.exploreBoardGames')}}}
                         </a>
                     @else
-                        <p class="text-xl">Welcome, guest!</p>
-                        <p>You can browse board games and see upcoming events, but you’ll need an account to participate.</p>
+                        <p class="text-xl">{{__('app.hello')}},</p>
+                        <p>{{__('app.dashboardGuestDecription')}}</p>
 
                         <div class="flex space-x-4">
                             <a href="{{ route('login') }}"
                                class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                                Log in
+                                {{__('app.login')}}}
                             </a>
                             <a href="{{ route('register') }}"
                                class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
-                                Register
+                                {{__('app.register')}}}
                             </a>
                         </div>
                     @endauth

@@ -9,22 +9,42 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class GameNight extends Model
 {
-    public function creator()
+    /**
+     * Linking to User Table
+     *
+     * @return BelongsTo
+     */
+    public function creator() : belongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function games()
+    /**
+     * Linking to BoardGame Table
+     *
+     * @return BelongsToMany
+     */
+    public function games() : BelongsToMany
     {
         return $this->belongsToMany(BoardGame::class, 'game_night_games');
     }
 
-    public function participants()
+    /**
+     * Linking to EventParticipants Table
+     *
+     * @return HasMany
+     */
+    public function participants() : hasMany
     {
         return $this->hasMany(EventParticipants::class);
     }
 
-    public function suggestions()
+    /**
+     * Linking to GameSuggestions Table
+     *
+     * @return HasMany
+     */
+    public function suggestions() : HasMany
     {
         return $this->hasMany(GameSuggestions::class);
     }

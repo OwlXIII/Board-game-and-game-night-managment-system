@@ -2,108 +2,103 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreBoardGameRequest;
+use App\Http\Requests\UpdateBoardGameRequest;
 use App\Models\BoardGame;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class BoardGameController extends Controller
 {
-    /*public function __construct()
-    {
-        $this->middleware(['auth', 'verified'])->except(['index', 'show']);
-    }*/
     /**
-     * Display a listing of the resource.
+     * Shows board games
+     *
+     * @return View
      */
-    public function index()
+    public function index() : View
     {
-        $boardGames = BoardGame::latest()->paginate(10);
-        return view('boardgames.index', compact('boardGames'));
+        return view('boardgames.index', ['boardGames' => BoardGame::latest()->paginate(10),]);
+
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Shows board game create page
+     *
+     * @return View
      */
-    public function create()
+    public function create() : View
     {
         $this->authorize('admin');
         return view('boardgames.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Saves created board game
+     *
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreBoardGameRequest $request) : RedirectResponse
     {
-        $this->authorize('admin');
-
-        $validated = $request->validate([
-            'title' => 'required|string|max:100',
-            'description' => 'required|string',
-            'category' => 'nullable|string|max:50',
-            'player_count_min' => 'required|integer|min:1',
-            'player_count_max' => 'required|integer|min:1',
-            'duration_minutes' => 'required|integer|min:5',
-            'complexity' => 'required|in:low,medium,high',
-            'rules' => 'nullable|string',
-        ]);
-
+        $validated = $request->validate();
         $validated['created_by'] = Auth::id();
 
         BoardGame::create($validated);
 
-        return redirect()->route('boardgames.index')->with('success', 'Game created successfully!');
+        return redirect()->route('boardgames.index')->with('app.success', 'Game created successfully!');
     }
 
     /**
-     * Display the specified resource.
+     * Shows board game information
+     *
+     * @param BoardGame $boardGame
+     * @return View
      */
-    public function show(BoardGame $boardGame)
+    public function show(BoardGame $boardGame) : View
     {
         return view('boardgames.show', compact('boardGame'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Shows board game edit page
+     *
+     * @param BoardGame $game
+     * @return View
      */
-    public function edit(BoardGame $game)
+    public function edit(BoardGame $game) : View
     {
         $this->authorize('admin');
         return view('boardgames.edit', compact('game'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Updates board game information
+     *
+     * @param Request $request
+     * @param BoardGame $boardGame
+     * @return RedirectResponse
      */
-    public function update(Request $request, BoardGame $boardGame)
+    public function update(UpdateBoardGameRequest $request, BoardGame $boardGame) : RedirectResponse
     {
-        $this->authorize('admin');
+        $boardGame->update($request->validated());
 
-        $validated = $request->validate([
-            'title' => 'required|string|max:100',
-            'description' => 'required|string',
-            'category' => 'nullable|string|max:50',
-            'player_count_min' => 'required|integer|min:1',
-            'player_count_max' => 'required|integer|min:1',
-            'duration_minutes' => 'required|integer|min:5',
-            'complexity' => 'required|in:low,medium,high',
-            'rules' => 'nullable|string',
-        ]);
-
-        $boardGame->update($validated);
-
-        return redirect()->route('boardgames.index')->with('success', 'Game updated successfully!');
+        return redirect()->route('boardgames.index')->with('app.success', 'app.updatedBoardGame');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deletes board game
+     *
+     * @param BoardGame $boardGame
+     * @return RedirectResponse
      */
-    public function destroy(BoardGame $boardGame)
+    public function destroy(BoardGame $boardGame) : RedirectResponse
     {
         $this->authorize('admin');
 
         $boardGame->delete();
 
-        return redirect()->route('boardgames.index')->with('success', 'Game deleted.');
+        return redirect()->route('boardgames.index')->with('app.success', 'app.deletedBoardGame');
     }
 }

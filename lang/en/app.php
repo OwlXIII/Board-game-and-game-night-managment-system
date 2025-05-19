@@ -1,5 +1,5 @@
 <?php
-return[
+return [
     'home' => 'Home',
     'boardgames' => 'Board Game Library',
     'gamenights' => 'Game Nights',
@@ -15,16 +15,15 @@ return[
     'duration' => 'Duration',
     'complexity' => 'Complexity',
     'gamecomplexity' => [
-    'low' => 'Low',
-    'medium' => 'Medium',
-    'high' => 'High',
-        ],
+        'low' => 'Low',
+        'medium' => 'Medium',
+        'high' => 'High',
+    ],
     'name' => 'Name',
     'email' => 'Email',
     'password' => 'Password',
     'role' => 'Role',
     'action' => 'Actions',
-
     'profileInformation' => 'Profile Information',
     'profileDescription' => "Update your account's profile information and email address.",
     'save' => 'Išsaugoti',
@@ -34,24 +33,38 @@ return[
     'newPassword' => 'New Password',
     'confirmPassword' => 'Confirm Password',
     'resetPassword' => 'Reset Password',
-
     'deleteAccount' => 'Delete Account',
     'deleteAccountDescription' => 'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
     'close' => 'Close',
     'cancel' => 'Cancel',
     'deleteAccountWarning' => 'Are you sure you want to delete your account?',
     'deleteAccountWarningDescription' => 'Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.',
-
     'rememberMe' => 'Remember Me',
     'forgotPassword' => 'Forgot your password?',
     'forgotPasswordDescription' => 'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
     'alreadyRegistered' => 'Already registered?',
     'passwordResetLink' => 'Email Password Reset Link',
-
     'confirm' => 'Confirm',
     'passwordConfirmDescription' => 'This is a secure area of the application. Please confirm your password before continuing.',
-
     'verificationDescription' => "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.",
     'verificationLinkDescription' => 'A new verification link has been sent to the email address you provided during registration.',
-    'resendVerification' => 'Resend Verification Email'
+    'resendVerification' => 'Resend Verification Email',
+    'accessDenied' => 'Access Denied',
+    'success' => 'Success',
+    'roleUpdateInformation' => 'User role updated.',
+    'createdBoardGame' => 'Game created successfully!',
+    'updatedBoardGame' => 'Game updated successfully!',
+    'deletedBoardGame' => 'Game deleted successfully!',
+    'roles' => [
+        'user' => 'User',
+        'admin' => 'Admin',
+    ],
+    'adminDashboard' => 'Admin Dashboard – User Management',
+    'dashboardDescription' => 'You can browse, rate, and suggest board games for upcoming game nights.',
+    'exploreBoardGames' => 'Explore Board Games',
+    'dashboardGuestDecription' => 'You can browse board games and see upcoming events, but you’ll need an account to participate.',
+    'user' => 'User',
+    'admin' => 'Admin',
+    'lt' => 'LT',
+    'en' => 'EN',
 ];

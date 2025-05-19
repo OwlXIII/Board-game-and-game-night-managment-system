@@ -23,22 +23,42 @@ class BoardGame extends Model
         'created_by',
     ];
 
-    public function creator()
+    /**
+     * Linking to User Table
+     *
+     * @return BelongsTo
+     */
+    public function creator() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function reviews()
+    /**
+     * Linking to GameReviews Table
+     *
+     * @return HasMany
+     */
+    public function reviews() : HasMany
     {
         return $this->hasMany(GameReviews::class);
     }
 
-    public function gameNights()
+    /**
+     * Linking to GameNight Table
+     *
+     * @return BelongsToMany
+     */
+    public function gameNights() : BelongsToMany
     {
         return $this->belongsToMany(GameNight::class, 'game_night_games');
     }
 
-    public function suggestions()
+    /**
+     * Linking to GameSuggestions Table
+     *
+     * @return HasMany
+     */
+    public function suggestions() : HasMany
     {
         return $this->hasMany(GameSuggestions::class);
     }

@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
+    /**
+     * Switches interface language (locale)
+     *
+     * @param $lang
+     * @return RedirectResponse
+     */
     public function switchLang($lang): RedirectResponse
     {
-        if (!in_array($lang, ['en', 'lt'])) {
-            abort(400);
-        }
-
-        //app()->setLocale($lang);
+        abort_if(!in_array($lang, ['en', 'lt']), 400);
         session()->put('locale', $lang);
 
         return redirect()->back();

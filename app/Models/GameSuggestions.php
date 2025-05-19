@@ -7,18 +7,33 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GameSuggestions extends Model
 {
-    public function gameNight()
+    /**
+     * Linking to GameNight Table
+     *
+     * @return BelongsTo
+     */
+    public function gameNight() : BelongsTo
     {
         return $this->belongsTo(GameNight::class);
     }
 
-    public function game()
+    /**
+     * Linking to BoardGame Table
+     *
+     * @return BelongsTo
+     */
+    public function game() : BelongsTo
     {
         return $this->belongsTo(BoardGame::class);
     }
 
-    public function suggestedBy()
+    /**
+     * Linking to User Table
+     *
+     * @return BelongsTo
+     */
+    public function suggestedBy() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'suggested_by');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

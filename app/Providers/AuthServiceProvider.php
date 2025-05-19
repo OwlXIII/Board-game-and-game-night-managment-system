@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    /**
+     * Checking if user is Admin
+     *
+     * @return void
+     */
     public function boot(): void
     {
         Gate::define('admin', function (User $user) {

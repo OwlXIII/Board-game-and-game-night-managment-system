@@ -2,35 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserRoleRequest;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\View\View;
 
 class AdminController extends Controller
 {
-    public function index()
-    {
-        if (auth()->user()->role !== 'admin') {
-            abort(403, 'Access denied');
-        }
+    /**
+     * Shows admin dashboard
+     *
+     * @return View
+     */
 
-        $users = User::all();
-        return view('admin.dashboard', compact('users'));
+    public function index() : View
+    {
+        return view('admin.dashboard')->with('users', User::all());
     }
 
-    public function updateRole(Request $request, User $user)
+    /**
+     * Update user role
+     *
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
+    public function updateRole(UpdateUserRoleRequest $request, User $user) : RedirectResponse
     {
-        if (auth()->user()->role !== 'admin') {
-            abort(403);
-        }
-
-        $request->validate([
-            'role' => 'required|in:user,admin',
-        ]);
-
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('admin.dashboard')->with('success', 'User role updated.');
+        return redirect()->route('admin.dashboard')->with('app.success', 'app.updateRoleInformation');
     }
 }

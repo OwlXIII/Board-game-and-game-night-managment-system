@@ -18,7 +18,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/boardgames', [BoardGameController::class, 'index'])->name('boardgames.index');
+Route::prefix('boardgames')->name('boardgames.')->group(function () {
+    Route::get('/', [BoardGameController::class, 'index'])->name('index');
+});
 
 Route::get('/language/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
 
@@ -28,9 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::patch('/admin/user/{user}/role', [AdminController::class, 'updateRole'])->name('admin.updateRole');
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::patch('/user/{user}/role', [AdminController::class, 'updateRole'])->name('updateRole');
+    });
 });
 
 require __DIR__.'/auth.php';
