@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Support\Constants;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateBoardGameRequest extends FormRequest
@@ -16,10 +17,10 @@ class UpdateBoardGameRequest extends FormRequest
         return [
             'title' => 'required|string|max:100',
             'description' => 'required|string',
-            'category' => 'nullable|string|max:50',
-            'player_count_min' => 'required|integer|min:1',
-            'player_count_max' => 'required|integer|min:1',
-            'duration_minutes' => 'required|integer|min:5',
+            'category' => 'required|string|max:50',
+            'min_players' => 'required|integer|min:' . Constants::MIN_PLAYERS,
+            'max_players' => 'required|integer|min:' . Constants::MIN_PLAYERS . '|max:' . Constants::MAX_PLAYERS,
+            'duration' => 'required|integer|min:' . Constants::MIN_DURATION . '|max:' . Constants::MAX_DURATION,
             'complexity' => 'required|in:low,medium,high',
             'rules' => 'nullable|string',
         ];

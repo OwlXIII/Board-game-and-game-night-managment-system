@@ -73,4 +73,10 @@ return [
     'admin' => 'Admin',
     'lt' => 'LT',
     'en' => 'EN',
+    'all' => 'All',
+    'minutes' => 'min',
+    'filter' => 'Filter',
+    'reset' => 'Reset',
+    'suggestBoardGame' => 'Suggest a board game',
+    'boardGamesNotFound' => 'No board games found',
 ];

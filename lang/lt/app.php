@@ -73,4 +73,10 @@ return [
     'admin' => 'Administratorius',
     'lt' => 'LT',
     'en' => 'EN',
+    'all' => 'Visi',
+    'minutes' => 'min',
+    'filter' => 'Filtruoti',
+    'reset' => 'Atstatyti',
+    'suggestBoardGame' => 'Pasiūlyti stalo žaidimą',
+    'boardGamesNotFound' => 'Nerasta žaidimų',
 ];

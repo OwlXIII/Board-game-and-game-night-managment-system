@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->integer('min_players');
             $table->integer('max_players');
-            $table->integer('duration'); // in minutes
+            $table->integer('duration');
             $table->enum('complexity', ['low', 'medium', 'high']);
             $table->text('rules')->nullable();
             $table->foreignId('created_by')->constrained('users');
