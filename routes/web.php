@@ -1,20 +1,47 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\BoardGameController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+Route::redirect('/dashboard', '/');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::prefix('boardgames')->name('boardgames.')->group(function () {
+    Route::get('/', [BoardGameController::class, 'index'])->name('index');
+    Route::middleware(['auth', 'is_admin'])->group(function () {
+        Route::get('/create', [BoardGameController::class, 'create'])->name('create');
+        Route::get('/edit/{boardgame}', [BoardGameController::class, 'edit'])->name('edit');
+        Route::delete('/delete/{boardgame}', [BoardGameController::class, 'destroy'])->name('destroy');
+        Route::post('/store', [BoardGameController::class, 'store'])->name('store');
+        Route::patch('/{boardgame}', [BoardGameController::class, 'update'])->name('update');
+    });
+});
+
+Route::get('/language/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('dashboard');
+        Route::patch('/user/{user}/role', [AdminController::class, 'updateRole'])->name('updateRole');
+    });
 });
 
 require __DIR__.'/auth.php';
