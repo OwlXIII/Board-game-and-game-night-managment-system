@@ -19,8 +19,9 @@ class BoardGameController extends Controller
      */
     public function index() : View
     {
-        return view('boardgames.index', ['boardGames' => BoardGame::latest()->paginate(10),]);
-
+        return view('boardgames.index', [
+            'boardGames' => BoardGame::where('status', 'approved')->latest()->paginate(10),
+        ]);
     }
 
     /**
@@ -41,12 +42,13 @@ class BoardGameController extends Controller
      */
     public function store(StoreBoardGameRequest $request) : RedirectResponse
     {
-        $validated = $request->validate();
-        $validated['created_by'] = Auth::id();
+        $validated = $request->validated();
+        $validated['created_by'] = auth()->id();
+        $validated['status'] = 'pending';
 
         BoardGame::create($validated);
 
-        return redirect()->route('boardgames.index')->with('app.success', 'Game created successfully!');
+        return redirect()->route('boardgames.index')->with('app.success', 'app.createdBoardGame');
     }
 
     /**

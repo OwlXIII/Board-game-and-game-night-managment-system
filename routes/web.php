@@ -20,11 +20,13 @@ Route::get('/dashboard', function () {
 
 Route::prefix('boardgames')->name('boardgames.')->group(function () {
     Route::get('/', [BoardGameController::class, 'index'])->name('index');
-    Route::middleware(['auth', 'is_admin'])->group(function () {
+    Route::middleware('auth')->group(function () {
+        Route::post('/store', [BoardGameController::class, 'store'])->name('store');
         Route::get('/create', [BoardGameController::class, 'create'])->name('create');
+    });
+    Route::middleware(['auth', 'is_admin'])->group(function () {
         Route::get('/edit/{boardgame}', [BoardGameController::class, 'edit'])->name('edit');
         Route::delete('/delete/{boardgame}', [BoardGameController::class, 'destroy'])->name('destroy');
-        Route::post('/store', [BoardGameController::class, 'store'])->name('store');
         Route::patch('/{boardgame}', [BoardGameController::class, 'update'])->name('update');
     });
 });

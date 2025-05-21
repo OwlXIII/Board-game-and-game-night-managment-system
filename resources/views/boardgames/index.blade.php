@@ -5,6 +5,12 @@
         </h2>
     </x-slot>
 
+    <div class="flex justify-end mb-4">
+        @auth
+            <x-suggest-button />
+        @endauth
+    </div>
+
     <div class="py-8">
         <div class="max-w-6xl mx-auto space-y-6">
             @foreach ($boardGames as $game)

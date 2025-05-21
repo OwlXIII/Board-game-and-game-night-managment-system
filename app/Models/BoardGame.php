@@ -21,12 +21,13 @@ class BoardGame extends Model
         'title',
         'description',
         'category',
-        'player_count_min',
-        'player_count_max',
-        'duration_minutes',
+        'min_players',
+        'max_players',
+        'duration',
         'complexity',
         'rules',
         'created_by',
+        'status',
     ];
 
     /**
