@@ -17,9 +17,9 @@ class StoreBoardGameRequest extends FormRequest
             'title' => 'required|string|max:100',
             'description' => 'required|string',
             'category' => 'nullable|string|max:50',
-            'player_count_min' => 'required|integer|min:1',
-            'player_count_max' => 'required|integer|min:1',
-            'duration_minutes' => 'required|integer|min:5',
+            'min_players' => 'required|integer|min:1',
+            'max_players' => 'required|integer|min:1',
+            'duration' => 'required|integer|min:5',
             'complexity' => 'required|in:low,medium,high',
             'rules' => 'nullable|string',
         ];

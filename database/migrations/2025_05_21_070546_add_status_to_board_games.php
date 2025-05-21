@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('role')->default('user');
+        Schema::table('board_games', function (Blueprint $table) {
+            $table->enum('status', ['pending', 'approved', 'denied'])->default('pending');
         });
     }
 
@@ -21,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
+        Schema::table('board_games', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 };
