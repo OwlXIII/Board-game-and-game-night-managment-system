@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BoardGameStatus;
 use App\Http\Requests\StoreBoardGameRequest;
 use App\Http\Requests\UpdateBoardGameRequest;
 use App\Models\BoardGame;
@@ -44,7 +45,7 @@ class BoardGameController extends Controller
     {
         $validated = $request->validated();
         $validated['created_by'] = auth()->id();
-        $validated['status'] = 'pending';
+        $validated['status'] = BoardGameStatus::Pending->value;
 
         BoardGame::create($validated);
 
