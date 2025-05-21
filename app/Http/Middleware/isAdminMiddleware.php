@@ -16,9 +16,7 @@ class isAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
-            abort(403, __('app.accessDenied'));
-        }
+        abort_if(!Auth::check() || Auth::user()->role !== 'admin', 403, __('app.accessDenied'));
 
         return $next($request);
     }

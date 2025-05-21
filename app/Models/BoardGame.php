@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class BoardGame extends Model
 {
     use HasFactory;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var list<string>
+     */
     protected $fillable = [
         'title',
         'description',
@@ -30,7 +36,7 @@ class BoardGame extends Model
      */
     public function creator() : BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
     /**

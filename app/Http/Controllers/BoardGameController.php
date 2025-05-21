@@ -30,7 +30,6 @@ class BoardGameController extends Controller
      */
     public function create() : View
     {
-        $this->authorize('admin');
         return view('boardgames.create');
     }
 
@@ -69,7 +68,6 @@ class BoardGameController extends Controller
      */
     public function edit(BoardGame $game) : View
     {
-        $this->authorize('admin');
         return view('boardgames.edit', compact('game'));
     }
 
@@ -95,8 +93,6 @@ class BoardGameController extends Controller
      */
     public function destroy(BoardGame $boardGame) : RedirectResponse
     {
-        $this->authorize('admin');
-
         $boardGame->delete();
 
         return redirect()->route('boardgames.index')->with('app.success', 'app.deletedBoardGame');
