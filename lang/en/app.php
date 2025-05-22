@@ -83,4 +83,13 @@ return [
     'rating' => 'Rating',
     'selectRating' => 'Select a rating',
     'comment' => 'Comment',
+    'averageRating' => 'Average Rating',
+    'reviews' => 'Reviews',
+    'editReview' => 'Edit Review',
+    'updateReview' => 'Update Review',
+    'noReviews' => 'No reviews yet. Be the first to leave a review!',
+    'deteleReview' => 'Delete Review',
+    'deleteReviewConfirm' => 'Are you sure you want to delete your review?',
+    'submittedReview' => 'Review submitted.',
+    'deletedReview' => 'Review deleted.',
 ];

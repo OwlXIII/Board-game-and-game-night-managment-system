@@ -91,7 +91,7 @@ class BoardGame extends Model
      */
     public function reviews() : HasMany
     {
-        return $this->hasMany(GameReviews::class);
+        return $this->hasMany(GameReviews::class, 'game_id');
     }
 
     /**

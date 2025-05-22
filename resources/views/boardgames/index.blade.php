@@ -1,6 +1,7 @@
 @php
     use App\Enumerations\PlayerLimit;
     use App\Enumerations\DurationLimit;
+    use App\Enumerations\RatingLimit;
 @endphp
 <x-app-layout>
     <x-slot name="header">
@@ -88,7 +89,16 @@
                     <p><strong>{{ __('app.players') }}:</strong> {{ $boardGame->min_players }} – {{ $boardGame->max_players }}</p>
                     <p><strong>{{ __('app.duration') }}:</strong> {{ $boardGame->duration }} {{ __('app.minutes') }}</p>
                     <p><strong>{{ __('app.complexity') }}:</strong> {{ __('app.gamecomplexity.' . $boardGame->complexity) }}</p>
+                    <p><strong>{{ __('app.averageRating') }}:</strong>
+                        @if ($boardGame->reviews_avg_rating)
+                            {{ number_format($boardGame->reviews_avg_rating, 1) }} / {{ RatingLimit::MAX->value }}
+                        @else
+                            {{ __('app.noReviews') }}
+                        @endif
+                    </p>
                 </div>
+
+
             @endforeach
 
 

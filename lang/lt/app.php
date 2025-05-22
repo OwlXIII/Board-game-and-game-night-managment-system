@@ -83,5 +83,13 @@ return [
     'rating' => 'Įvertinimas',
     'selectRating' => 'Pasirinkti įvertinimą',
     'comment' => 'Komentaras',
-
+    'averageRating' => 'Įvertinimas',
+    'reviews' => 'Atsiliepimai',
+    'editReview' => 'Pakoreguoti atsiliepimą',
+    'updateReview' => 'Atnaujinti atsiliepimą',
+    'noReviews' => 'Atsiliepimų nėra',
+    'deleteReview' => 'Ištrinti atsiliepimą',
+    'deleteReviewConfirm' => 'Ar tikrai norite ištrinti savo atsiliepimą?',
+    'submittedReview' => 'Atsiliepimas pateiktas',
+    'deletedReview' => 'Atsiliepimas ištrintas',
 ];
