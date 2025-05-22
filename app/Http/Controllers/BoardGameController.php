@@ -2,27 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\BoardGameStatus;
+use App\Enumerations\BoardGameStatus;
+use App\Enumerations\PlayerLimit;
 use App\Http\Requests\StoreBoardGameRequest;
 use App\Http\Requests\UpdateBoardGameRequest;
 use App\Models\BoardGame;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class BoardGameController extends Controller
 {
     /**
-     * Shows board games
+     * Shows board games with filter
      *
      * @return View
      */
-    public function index() : View
+    public function index(Request $request) : View
     {
-        return view('boardgames.index', [
-            'boardGames' => BoardGame::where('status', 'approved')->latest()->paginate(10),
-        ]);
+        $boardGames = BoardGame::search($request->all())
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        $categories = BoardGame::distinct('category')
+            ->pluck('category')
+            ->sort()
+            ->values();
+
+        return view('boardgames.index', array_merge([
+            'boardGames' => $boardGames,
+            'categories' => $categories,
+        ]));
     }
 
     /**
