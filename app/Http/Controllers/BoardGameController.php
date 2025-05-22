@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Enumerations\BoardGameStatus;
+use App\Enumerations\PlayerLimit;
 use App\Http\Requests\StoreBoardGameRequest;
 use App\Http\Requests\UpdateBoardGameRequest;
 use App\Models\BoardGame;
-use App\Support\Constants;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -20,37 +20,10 @@ class BoardGameController extends Controller
      */
     public function index(Request $request) : View
     {
-        $query = BoardGame::query()->where('status', 'approved');
-
-        if ($request->filled('search')) {
-            $query->where('title', 'like', '%' . $request->search . '%');
-        }
-
-        if ($request->filled('category')) {
-            $query->where('category', $request->category);
-        }
-
-        if ($request->filled('complexity')) {
-            $query->where('complexity', $request->complexity);
-        }
-
-        if ($request->filled('min_players')) {
-            $query->where('min_players', '<=', $request->min_players);
-        }
-
-        if ($request->filled('max_players')) {
-            $query->where('max_players', '>=', $request->max_players);
-        }
-
-        if ($request->filled('min_duration')) {
-            $query->where('duration', '>=', $request->min_duration);
-        }
-
-        if ($request->filled('max_duration')) {
-            $query->where('duration', '<=', $request->max_duration);
-        }
-
-        $boardGames = $query->latest()->paginate(10)->withQueryString();
+        $boardGames = BoardGame::search($request->all())
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
 
         $categories = BoardGame::distinct('category')
             ->pluck('category')
@@ -60,7 +33,7 @@ class BoardGameController extends Controller
         return view('boardgames.index', array_merge([
             'boardGames' => $boardGames,
             'categories' => $categories,
-        ], Constants::getConstants()));
+        ]));
     }
 
     /**

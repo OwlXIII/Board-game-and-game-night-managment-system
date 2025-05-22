@@ -31,6 +31,48 @@ class BoardGame extends Model
     ];
 
     /**
+     * Board Game Filter System
+     *
+     * @param $query
+     * @param $filters
+     * @return mixed
+     */
+    public function scopeSearch($query, $filters)
+    {
+        $query->where('status', 'approved');
+
+        if (!empty($filters['search'])) {
+            $query->where('title', 'like', '%' . $filters['search'] . '%');
+        }
+
+        if (!empty($filters['category'])) {
+            $query->where('category', $filters['category']);
+        }
+
+        if (!empty($filters['complexity'])) {
+            $query->where('complexity', $filters['complexity']);
+        }
+
+        if (!empty($filters['min_players'])) {
+            $query->where('min_players', '<=', $filters['min_players']);
+        }
+
+        if (!empty($filters['max_players'])) {
+            $query->where('max_players', '>=', $filters['max_players']);
+        }
+
+        if (!empty($filters['min_duration'])) {
+            $query->where('duration', '>=', $filters['min_duration']);
+        }
+
+        if (!empty($filters['max_duration'])) {
+            $query->where('duration', '<=', $filters['max_duration']);
+        }
+
+        return $query;
+    }
+
+    /**
      * Linking to User Table
      *
      * @return BelongsTo

@@ -1,3 +1,7 @@
+@php
+    use App\Enumerations\PlayerLimit;
+    use App\Enumerations\DurationLimit;
+@endphp
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -46,18 +50,18 @@
             <div>
                 <x-input-label for="players" :value="__('app.players')" />
                 <div class="flex items-center gap-2">
-                    <input type="number" name="min_players" min="{{ $MIN_PLAYERS }}" max="{{ $MAX_PLAYERS }}" value="{{ request('min_players') }}" class="w-20 border rounded p-1">
+                    <input type="number" name="min_players" min="{{ PlayerLimit::MIN->value }}" max="{{ PlayerLimit::MAX->value }}" value="{{ request('min_players') }}" class="w-20 border rounded p-1">
                     <span>–</span>
-                    <input type="number" name="max_players" min="{{ $MIN_PLAYERS }}" max="{{ $MAX_PLAYERS }}" value="{{ request('max_players') }}" class="w-20 border rounded p-1">
+                    <input type="number" name="max_players" min="{{ PlayerLimit::MIN->value }}" max="{{ PlayerLimit::MAX->value }}" value="{{ request('max_players') }}" class="w-20 border rounded p-1">
                 </div>
             </div>
 
             <div>
-                <x-input-label for="duration" :value="__('app.duration').__('app.minutes')" />
+                <x-input-label for="duration" :value="__('app.duration') . ' ' . __('app.minutes')" />
                 <div class="flex items-center gap-2">
-                    <input type="number" name="min_duration" min="{{ $MIN_DURATION }}" max="{{ $MAX_DURATION }}" value="{{ request('min_duration') }}" class="w-24 border rounded p-1">
+                    <input type="number" name="min_duration" min="{{ DurationLimit::MIN->value }}" max="{{ DurationLimit::MAX->value }}" value="{{ request('min_duration') }}" class="w-24 border rounded p-1">
                     <span>–</span>
-                    <input type="number" name="max_duration" min="{{ $MIN_DURATION }}" max="{{ $MAX_DURATION }}" value="{{ request('max_duration') }}" class="w-24 border rounded p-1">
+                    <input type="number" name="max_duration" min="{{ DurationLimit::MIN->value }}" max="{{ DurationLimit::MAX->value }}" value="{{ request('max_duration') }}" class="w-24 border rounded p-1">
                 </div>
             </div>
 
