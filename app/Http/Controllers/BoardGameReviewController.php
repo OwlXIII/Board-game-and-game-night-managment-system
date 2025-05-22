@@ -38,8 +38,10 @@ class BoardGameReviewController extends Controller
 
     public function destroy(BoardGame $boardGame) : RedirectResponse
     {
-        if ($boardGame->reviews()->where('user_id', auth()->id())->first()) {
-            $boardGame->reviews()->where('user_id', auth()->id())->first()->delete();
+        $validate = $boardGame->reviews()->where('user_id', auth()->id())->first();
+
+        if ($validate) {
+            $validate->delete();
         }
 
         return back()->with('app.success', __('app.deletedReview'));
