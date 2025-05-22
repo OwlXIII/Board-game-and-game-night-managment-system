@@ -92,4 +92,13 @@ return [
     'deleteReviewConfirm' => 'Are you sure you want to delete your review?',
     'submittedReview' => 'Review submitted.',
     'deletedReview' => 'Review deleted.',
+    'approvedBoardGame' => 'Game successfully approved!',
+    'deniedBoardGame' => 'Game not approved',
+    'failed' => 'Failed',
+    'suggestedBoardGames' => 'Suggested Board Games',
+    'approve' => 'Approve',
+    'deny' => 'Deny',
+    'noPendingGame' => 'No pending games',
+    'backToPendingList' => 'Back to pending list',
+
 ];

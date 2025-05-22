@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserRoleRequest;
+use App\Models\BoardGame;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -35,5 +36,17 @@ class AdminController extends Controller
         $user->save();
 
         return redirect()->route('admin.dashboard')->with('app.success', 'app.updateRoleInformation');
+    }
+
+    /**
+     * Shows board games for approval
+     *
+     * @param BoardGame $boardGame
+     * @return View
+     */
+
+    public function show(BoardGame $boardGame): View
+    {
+        return view('admin.boardgames.show', compact('boardGame'));
     }
 }

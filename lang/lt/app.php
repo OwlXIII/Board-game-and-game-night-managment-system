@@ -92,4 +92,12 @@ return [
     'deleteReviewConfirm' => 'Ar tikrai norite ištrinti savo atsiliepimą?',
     'submittedReview' => 'Atsiliepimas pateiktas',
     'deletedReview' => 'Atsiliepimas ištrintas',
+    'approvedBoardGame' => 'Žaidimas sėkmingai patvirtintas!',
+    'deniedBoardGame' => 'Žaidimas nepatvirtintas',
+    'failed' => 'Nepavyko',
+    'suggestedBoardGames' => 'Pasiūlyti žaidimai',
+    'approve' => 'Patvirtinti',
+    'deny' => 'Atmesti',
+    'noPendingGames' => 'Nėra laukiančių žaidimų',
+    'backToPendingList' => 'Atgal į laukiančiųjų žaidimų sąrašą'
 ];
