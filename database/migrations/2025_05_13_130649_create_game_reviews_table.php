@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('game_reviews', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('game_id')->constrained('boardgames')->onDelete('cascade');
+            $table->foreignId('game_id')->constrained('board_games')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->tinyInteger('rating')->check('rating >= 1 AND rating <= 5');
             $table->text('comment')->nullable();
             $table->timestamps();
+            $table->unique(['user_id', 'game_id']);
         });
     }
 

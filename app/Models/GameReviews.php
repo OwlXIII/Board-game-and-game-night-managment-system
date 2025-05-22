@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GameReviews extends Model
 {
+    protected $fillable = ['user_id', 'game_id', 'rating', 'comment'];
+
     /**
      * Linking to User Table
      *
@@ -24,6 +26,6 @@ class GameReviews extends Model
      */
     public function game() : BelongsTo
     {
-        return $this->belongsTo(BoardGame::class);
+        return $this->belongsTo(BoardGame::class, 'game_id');
     }
 }

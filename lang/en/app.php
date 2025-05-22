@@ -79,4 +79,8 @@ return [
     'reset' => 'Reset',
     'suggestBoardGame' => 'Suggest a board game',
     'boardGamesNotFound' => 'No board games found',
+    'leaveReview' => 'Leave a review',
+    'rating' => 'Rating',
+    'selectRating' => 'Select a rating',
+    'comment' => 'Comment',
 ];

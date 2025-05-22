@@ -79,4 +79,9 @@ return [
     'reset' => 'Atstatyti',
     'suggestBoardGame' => 'Pasiūlyti stalo žaidimą',
     'boardGamesNotFound' => 'Nerasta žaidimų',
+    'leaveReview' => 'Palikti atsiliepimą',
+    'rating' => 'Įvertinimas',
+    'selectRating' => 'Pasirinkti įvertinimą',
+    'comment' => 'Komentaras',
+
 ];

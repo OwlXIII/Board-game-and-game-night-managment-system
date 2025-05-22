@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enumerations\BoardGameStatus;
 use App\Enumerations\PlayerLimit;
+use App\Models\GameReviews;
 use App\Http\Requests\StoreBoardGameRequest;
 use App\Http\Requests\UpdateBoardGameRequest;
 use App\Models\BoardGame;
