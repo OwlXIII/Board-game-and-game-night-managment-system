@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Enumerations\BoardGameStatus;
 use App\Enumerations\PlayerLimit;
+use App\Models\GameReviews;
 use App\Http\Requests\StoreBoardGameRequest;
 use App\Http\Requests\UpdateBoardGameRequest;
 use App\Models\BoardGame;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class BoardGameController extends Controller
@@ -21,6 +23,7 @@ class BoardGameController extends Controller
     public function index(Request $request) : View
     {
         $boardGames = BoardGame::search($request->all())
+            ->withAvg('reviews', 'rating')
             ->latest()
             ->paginate(10)
             ->withQueryString();
@@ -30,10 +33,10 @@ class BoardGameController extends Controller
             ->sort()
             ->values();
 
-        return view('boardgames.index', array_merge([
+        return view('boardgames.index',[
             'boardGames' => $boardGames,
             'categories' => $categories,
-        ]));
+        ]);
     }
 
     /**
@@ -64,14 +67,18 @@ class BoardGameController extends Controller
     }
 
     /**
-     * Shows board game information
+     * Shows board game information with comments and reviews
      *
      * @param BoardGame $boardGame
      * @return View
      */
     public function show(BoardGame $boardGame) : View
     {
-        return view('boardgames.show', compact('boardGame'));
+        return view('boardgames.show', [
+            'boardGame' => $boardGame->load('reviews.user'),
+            'reviews' => $boardGame->reviews()->with('user')->latest()->paginate(5),
+            'userReview' => $boardGame->reviews()->where('user_id', Auth::id())->first()
+        ]);
     }
 
     /**

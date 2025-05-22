@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BoardGameReviewController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\App;
@@ -23,6 +24,9 @@ Route::prefix('boardgames')->name('boardgames.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::post('/store', [BoardGameController::class, 'store'])->name('store');
         Route::get('/create', [BoardGameController::class, 'create'])->name('create');
+        Route::post('/{boardGame}/review', [BoardGameReviewController::class, 'store'])->name('reviews.store');
+        Route::get('/{boardGame}', [BoardGameController::class, 'show'])->name('show');
+        Route::delete('/{boardGame}/reviews', [BoardGameReviewController::class, 'destroy'])->name('reviews.destroy');
     });
     Route::middleware(['auth', 'is_admin'])->group(function () {
         Route::get('/edit/{boardgame}', [BoardGameController::class, 'edit'])->name('edit');

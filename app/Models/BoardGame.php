@@ -12,6 +12,8 @@ class BoardGame extends Model
 {
     use HasFactory;
 
+    protected $table = 'board_games';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -89,7 +91,7 @@ class BoardGame extends Model
      */
     public function reviews() : HasMany
     {
-        return $this->hasMany(GameReviews::class);
+        return $this->hasMany(GameReviews::class, 'game_id');
     }
 
     /**

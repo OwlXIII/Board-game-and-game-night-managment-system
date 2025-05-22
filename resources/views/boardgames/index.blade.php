@@ -1,6 +1,7 @@
 @php
     use App\Enumerations\PlayerLimit;
     use App\Enumerations\DurationLimit;
+    use App\Enumerations\RatingLimit;
 @endphp
 <x-app-layout>
     <x-slot name="header">
@@ -76,18 +77,30 @@
 
     <div class="py-8">
         <div class="max-w-6xl mx-auto space-y-6">
-            @forelse ($boardGames as $game)
+            @foreach ($boardGames as $boardGame)
                 <div class="bg-white shadow rounded-lg p-6">
-                    <h3 class="text-xl font-semibold">{{ $game->title }}</h3>
-                    <p class="text-gray-700 mb-2">{{ $game->description }}</p>
-                    <p><strong>{{ __('app.category') }}:</strong> {{ $game->category }}</p>
-                    <p><strong>{{ __('app.players') }}:</strong> {{ $game->min_players }} – {{ $game->max_players }}</p>
-                    <p><strong>{{ __('app.duration') }}:</strong> {{ $game->duration }} {{ __('app.minutes') }}</p>
-                    <p><strong>{{ __('app.complexity') }}:</strong> {{ __('app.gamecomplexity.' . $game->complexity) }}</p>
+                    <h3 class="text-xl font-semibold">
+                        <a href="{{ route('boardgames.show', $boardGame) }}" class="text-blue-600 hover:underline">
+                            {{ $boardGame->title }}
+                        </a>
+                    </h3>
+                    <p class="text-gray-700">{{ Str::limit($boardGame->description, 100) }}</p>
+                    <p><strong>{{ __('app.category') }}:</strong> {{ $boardGame->category }}</p>
+                    <p><strong>{{ __('app.players') }}:</strong> {{ $boardGame->min_players }} – {{ $boardGame->max_players }}</p>
+                    <p><strong>{{ __('app.duration') }}:</strong> {{ $boardGame->duration }} {{ __('app.minutes') }}</p>
+                    <p><strong>{{ __('app.complexity') }}:</strong> {{ __('app.gamecomplexity.' . $boardGame->complexity) }}</p>
+                    <p><strong>{{ __('app.averageRating') }}:</strong>
+                        @if ($boardGame->reviews_avg_rating)
+                            {{ number_format($boardGame->reviews_avg_rating, 1) }} / {{ RatingLimit::MAX->value }}
+                        @else
+                            {{ __('app.noReviews') }}
+                        @endif
+                    </p>
                 </div>
-            @empty
-                <p class="text-gray-500 text-center">{{ __('app.boardGamesNotFound') }}</p>
-            @endforelse
+
+
+            @endforeach
+
 
             <div class="mt-6">
                 {{ $boardGames->withQueryString()->links() }}
