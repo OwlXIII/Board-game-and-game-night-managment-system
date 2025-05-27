@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BoardGameReviewController;
+use App\Http\Controllers\GameNightController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\App;
@@ -32,6 +33,14 @@ Route::prefix('boardgames')->name('boardgames.')->group(function () {
         Route::get('/edit/{boardgame}', [BoardGameController::class, 'edit'])->name('edit');
         Route::delete('/delete/{boardgame}', [BoardGameController::class, 'destroy'])->name('destroy');
         Route::patch('/{boardgame}', [BoardGameController::class, 'update'])->name('update');
+    });
+});
+
+Route::prefix('gamenights')->name('gamenights.')->group(function () {
+    Route::get('/', [GameNightController::class, 'index'])->name('index');
+    Route::middleware('auth')->group(function () {
+        Route::post('/store', [GameNightController::class, 'store'])->name('store');
+        Route::get('/create', [GameNightController::class, 'create'])->name('create');
     });
 });
 

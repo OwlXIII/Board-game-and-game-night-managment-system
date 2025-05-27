@@ -100,5 +100,14 @@ return [
     'deny' => 'Deny',
     'noPendingGame' => 'No pending games',
     'backToPendingList' => 'Back to pending list',
+    'streetNumber' => 'Street Number',
+    'country' => 'Country',
+    'city' => 'City',
+    'street' => 'Street',
+    'createGameNight' => 'Create Game Night',
+    'gameNightCreated' => 'Game night created successfully!',
+    'dateTime' => 'Date and Time',
+    'location' => 'Location',
+    'create' => 'Create',
 
 ];
