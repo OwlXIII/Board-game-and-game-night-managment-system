@@ -11,6 +11,30 @@ use Illuminate\View\View;
 
 class GameNightController extends Controller
 {
+
+    /**
+     * To see all existing Game nights
+     *
+     * @return View
+     */
+    public function index() : View
+    {
+        return view('gamenights.index', [
+            'gameNights' => GameNight::where('event_time', '>=', now())->orderBy('event_time')->get()
+        ]);
+    }
+
+    /**
+     * Shows detailed information about game night
+     *
+     * @param GameNight $gameNight
+     * @return View
+     */
+    public function show(GameNight $gameNight) : View
+    {
+        return view('gamenights.show', compact('gameNight'));
+    }
+
     /**
      * Shows game night create page
      *

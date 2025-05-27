@@ -38,6 +38,7 @@ Route::prefix('boardgames')->name('boardgames.')->group(function () {
 
 Route::prefix('gamenights')->name('gamenights.')->group(function () {
     Route::get('/', [GameNightController::class, 'index'])->name('index');
+    Route::get('/{gameNight}', [GameNightController::class, 'show'])->name('show');
     Route::middleware('auth')->group(function () {
         Route::post('/store', [GameNightController::class, 'store'])->name('store');
         Route::get('/create', [GameNightController::class, 'create'])->name('create');

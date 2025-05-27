@@ -109,5 +109,8 @@ return [
     'dateTime' => 'Date and Time',
     'location' => 'Location',
     'create' => 'Create',
-
+    'gameNights' => 'Game Nights',
+    'noGameNights' => 'There are no upcoming game nights.',
+    'createdBy' => 'Created by',
+    'backToGameNights' => 'Back to Game Nights',
 ];

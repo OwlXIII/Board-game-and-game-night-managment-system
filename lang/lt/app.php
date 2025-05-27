@@ -109,5 +109,8 @@ return [
     'dateTime' => 'Data ir laikas',
     'location' => 'Vieta',
     'create' => 'Sukurti',
-
+    'gameNights' => 'Žaidimų vakarai',
+    'noGameNights' => 'Nėra žaidimų vakarų',
+    'createdBy' => 'Sukurtas',
+    'backToGameNights' => 'Atgal į žaidimų vakarų sąrašą',
 ];
