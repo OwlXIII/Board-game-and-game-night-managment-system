@@ -8,6 +8,16 @@ use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 class EventParticipants extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'user_id',
+        'game_night_id',
+    ];
+
+    /**
      * Linking to User Table
      *
      * @return BelongsTo

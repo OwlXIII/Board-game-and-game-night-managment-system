@@ -113,4 +113,13 @@ return [
     'noGameNights' => 'Nėra žaidimų vakarų',
     'createdBy' => 'Sukurtas',
     'backToGameNights' => 'Atgal į žaidimų vakarų sąrašą',
+    'youAreRegistered' => 'Esate užsiregistravę į šį renginį.',
+    'alreadyRegisteredToNight' => 'Jau užsiregistravote.',
+    'registeredSuccessfully' => 'Sėkmingai užregistruota!',
+    'participants' => 'Dalyviai',
+    'unregister' => 'Išregistruoti',
+    'unregisteredSuccessfully' => 'Jūsų registracija iš renginio buvo pašalinta.',
+    'creatorCannotUnregister' => 'Kūrėjai negali išsiregistruoti iš savo renginių.',
+    'youAreTheCreator' => 'Jūs esate šio įvykio kūrėjas.',
+    'error' => 'Klaida',
 ];

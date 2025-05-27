@@ -25,7 +25,6 @@ class GameNight extends Model
         'created_by',
     ];
 
-
     /**
      * Linking to User Table
      *

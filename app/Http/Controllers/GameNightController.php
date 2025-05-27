@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGameNightRequest;
+use App\Models\EventParticipants;
 use App\Models\GameNight;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -61,5 +62,50 @@ class GameNightController extends Controller
         ]));
 
         return redirect()->route('gamenights.index')->with('app.success', __('app.gamenightCreated'));
+    }
+
+    /**
+     * Register to game nights
+     *
+     * @param GameNight $gameNight
+     * @return RedirectResponse
+     */
+    public function register(GameNight $gameNight) : RedirectResponse
+    {
+        $userId = auth()->id();
+
+        $alreadyRegistered = EventParticipants::where('user_id', $userId)
+            ->where('game_night_id', $gameNight->id)
+            ->exists();
+
+        if ($alreadyRegistered) {
+            return back()->with('app.error', __('app.alreadyRegisteredToNight'));
+        }
+
+        EventParticipants::create([
+            'user_id' => $userId,
+            'game_night_id' => $gameNight->id,
+        ]);
+
+        return back()->with('app.success', __('app.registeredSuccessfully'));
+    }
+
+    /**
+     * Un-register from game nights
+     *
+     * @param GameNight $gameNight
+     * @return RedirectResponse
+     */
+    public function unregister(GameNight $gameNight) : RedirectResponse
+    {
+        $userId = auth()->id();
+
+        if ($gameNight->created_by === $userId) {
+            return back()->with('app.error', __('app.creatorCannotUnregister'));
+        }
+
+        $gameNight->participants()->where('user_id', $userId)->delete();
+
+        return back()->with('app.success', __('appUnregisteredSuccessfully'));
     }
 }

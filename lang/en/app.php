@@ -113,4 +113,13 @@ return [
     'noGameNights' => 'There are no upcoming game nights.',
     'createdBy' => 'Created by',
     'backToGameNights' => 'Back to Game Nights',
+    'youAreRegistered' => 'You are registered for this event.',
+    'alreadyRegisteredToNight' => 'You have already registered.',
+    'registeredSuccessfully' => 'Successfully registered!',
+    'participants' => 'Participants',
+    'unregister' => 'Unregister',
+    'unregisteredSuccessfully' => 'You have been unregistered from the event.',
+    'creatorCannotUnregister' => 'Creators cannot unregister from their own events.',
+    'youAreTheCreator' => 'You are the creator of this event.',
+    'error' => 'Error',
 ];
