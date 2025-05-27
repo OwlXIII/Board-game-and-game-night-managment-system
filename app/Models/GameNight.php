@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class GameNight extends Model
 {
+    protected $casts = [
+        'event_time' => 'datetime',
+    ];
+
     /**
      * The attributes that are mass assignable.
      *
