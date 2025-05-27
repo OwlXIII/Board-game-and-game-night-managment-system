@@ -10,6 +10,22 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class GameNight extends Model
 {
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'event_time',
+        'street',
+        'street_number',
+        'city',
+        'country',
+        'created_by',
+    ];
+
+    /**
      * Linking to User Table
      *
      * @return BelongsTo

@@ -99,5 +99,14 @@ return [
     'approve' => 'Patvirtinti',
     'deny' => 'Atmesti',
     'noPendingGames' => 'Nėra laukiančių žaidimų',
-    'backToPendingList' => 'Atgal į laukiančiųjų žaidimų sąrašą'
+    'backToPendingList' => 'Atgal į laukiančiųjų žaidimų sąrašą',
+    'streetNumber' => 'Gatvės numeris',
+    'country' => 'Šalis',
+    'city' => 'Miestas',
+    'street' => 'Gatvė',
+    'createGameNight' => 'Sukurti žaidimų vakarą',
+    'gameNightCreated' => 'Žaidimų vakaras sėkmingai sukurtas!',
+    'dateTime' => 'Data ir laikas',
+    'location' => 'Vieta',
+    'create' => 'Sukurti',
 ];
