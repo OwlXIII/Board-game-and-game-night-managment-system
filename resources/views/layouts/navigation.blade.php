@@ -25,6 +25,10 @@
                             <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                                 {{ __('app.dashboard') }}
                             </x-nav-link>
+
+                            <x-nav-link :href="route('admin.boardgames.pendingGames')" :active="request()->routeIs('admin.boardgames.pendingGames')">
+                                {{ __('app.suggestedBoardGames') }}
+                            </x-nav-link>
                         @endif
                     @endauth
                 </div>
@@ -103,9 +107,27 @@
                     <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('app.dashboard') }}
                     </x-responsive-nav-link>
+
+                    <x-responsive-nav-link :href="route('admin.boardgames.pendingGames')" :active="request()->routeIs('admin.boardgames.pendingGames')">
+                        {{ __('app.suggestedBoardGames') }}
+                    </x-responsive-nav-link>
                 @endcan
             @endauth
         </div>
+
+
+        @auth
+            @if(auth()->user()->role === 'admin')
+                <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                    {{ __('app.dashboard') }}
+                </x-nav-link>
+
+                <x-nav-link :href="route('admin.boardgames.pendingGames')" :active="request()->routeIs('admin.boardgames.pendingGames')">
+                    {{ __('app.suggestedBoardGames') }}
+                </x-nav-link>
+            @endif
+        @endauth
+
 
         <!-- Language switcher for mobile -->
         <div class="px-4 pt-2">

@@ -47,6 +47,12 @@ Route::middleware(['auth', 'is_admin'])->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
         Route::patch('/user/{user}/role', [AdminController::class, 'updateRole'])->name('updateRole');
+        Route::prefix('boardgames')->name('boardgames.')->group(function () {
+            Route::get('/pending', [BoardGameController::class, 'pending'])->name('pendingGames');
+            Route::get('/{boardGame}', [AdminController::class, 'show'])->name('show');
+            Route::patch('/{boardGame}/approve', [BoardGameController::class, 'approve'])->name('approve');
+            Route::patch('/{boardGame}/deny', [BoardGameController::class, 'deny'])->name('deny');
+        });
     });
 });
 

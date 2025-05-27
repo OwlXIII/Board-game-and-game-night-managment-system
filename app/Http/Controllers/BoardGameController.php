@@ -118,4 +118,41 @@ class BoardGameController extends Controller
 
         return redirect()->route('boardgames.index')->with('app.success', 'app.deletedBoardGame');
     }
+
+    /**
+     * Approve suggested board games from users
+     *
+     * @param BoardGame $boardGame
+     * @return RedirectResponse
+     */
+    public function approve(BoardGame $boardGame): RedirectResponse
+    {
+        $boardGame->update(['status' => 'approved']);
+
+        return redirect()->route('admin.boardgames.pendingGames')->with('app.success', 'app.approvedBoardGame');
+    }
+
+    /**
+     * Deny suggested board games from users
+     *
+     * @param BoardGame $boardGame
+     * @return RedirectResponse
+     */
+    public function deny(BoardGame $boardGame): RedirectResponse
+    {
+        $boardGame->update(['status' => 'denied']);
+
+        return redirect()->route('admin.boardgames.pendingGames')->with('app.failed', 'app.deniedBoardGame');
+    }
+
+    /**
+     * Shows suggested board games from users
+     *
+     * @return View
+     */
+
+    public function pending(): View
+    {
+        return view('admin.boardgames.pendingGames', ['pendingGames' => BoardGame::where('status', 'pending')->get()]);
+    }
 }
