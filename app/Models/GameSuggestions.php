@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class GameSuggestions extends Model
 {
+    protected $fillable = ['game_night_id', 'game_id', 'suggested_by'];
     /**
      * Linking to GameNight Table
      *
@@ -22,9 +23,9 @@ class GameSuggestions extends Model
      *
      * @return BelongsTo
      */
-    public function game(): BelongsTo
+    public function boardGame(): BelongsTo
     {
-        return $this->belongsTo(BoardGame::class);
+        return $this->belongsTo(BoardGame::class, 'game_id');
     }
 
     /**
@@ -32,8 +33,8 @@ class GameSuggestions extends Model
      *
      * @return BelongsTo
      */
-    public function suggestedBy(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'suggested_by');
     }
 }

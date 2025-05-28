@@ -20,32 +20,75 @@
             </p>
         </div>
 
+        @auth
+            @php
+                $isCreator = $gameNight->created_by === auth()->id();
+                $isRegistered = $gameNight->participants->contains('user_id', auth()->id());
+            @endphp
+
+            @if ($isCreator)
+                <p class="text-gray-500">{{ __('app.youAreTheCreator') }}</p>
+            @elseif (!$isRegistered)
+                <form action="{{ route('gamenights.register', $gameNight) }}" method="POST" class="mt-4">
+                    @csrf
+                    <x-primary-button>{{ __('app.register') }}</x-primary-button>
+                </form>
+            @else
+                <form action="{{ route('gamenights.unregister', $gameNight) }}" method="POST" class="mt-4">
+                    @csrf
+                    @method('DELETE')
+                    <x-danger-button>{{ __('app.unregister') }}</x-danger-button>
+                </form>
+            @endif
+        @endauth
+
+        @auth
+            @if ($isRegistered || $isCreator)
+            @php
+                $alreadySuggested = $gameNight->suggestions->contains('suggested_by', auth()->id());
+            @endphp
+
+            <div class="mt-6 bg-white p-4 shadow rounded-lg">
+                <h3 class="text-lg font-semibold mb-2">{{ __('app.suggestBoardGame') }}</h3>
+
+                @if ($alreadySuggested)
+                    <p class="text-gray-500">{{ __('app.alreadySuggested') }}</p>
+                @elseif ($boardGames->isEmpty())
+                    <p class="text-gray-500">{{ __('app.noBoardGamesToSuggest') }}</p>
+                @else
+                    <form action="{{ route('gamenights.suggest', $gameNight) }}" method="POST">
+                        @csrf
+
+                        <div class="mb-3">
+                            <x-input-label for="board_game_id" :value="__('app.boardgames')" />
+                            <select name="board_game_id" id="board_game_id" class="w-full border rounded p-2" required>
+                                <option value="">{{ __('app.selectGame') }}</option>
+                                @foreach ($boardGames as $game)
+                                    <option value="{{ $game->id }}">{{ $game->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <x-primary-button>{{ __('app.suggestBoardGame') }}</x-primary-button>
+                    </form>
+                @endif
+            </div>
+            @endif
+        @endauth
+
+        @if ($gameNight->suggestions->count())
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold">{{ __('app.suggestedBoardGames') }}</h3>
+                <ul class="list-disc list-inside">
+                    @foreach ($gameNight->suggestions as $suggestion)
+                        <li>{{ optional($suggestion->boardGame)->title ?? 'app.unknownGame' }} – {{ optional($suggestion->user)->name ?? 'app.unknownUser' }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <a href="{{ route('gamenights.index') }}" class="text-sm text-blue-600 hover:underline">
             ← {{ __('app.backToGameNights') }}
         </a>
     </div>
-
-    @auth
-        @php
-            $isCreator = $gameNight->created_by === auth()->id();
-            $isRegistered = $gameNight->participants->contains('user_id', auth()->id());
-        @endphp
-
-        @if ($isCreator)
-            <p class="text-gray-500">{{ __('app.youAreTheCreator') }}</p>
-
-        @elseif (!$isRegistered)
-            <form action="{{ route('gamenights.register', $gameNight) }}" method="POST" class="mt-4">
-                @csrf
-                <x-primary-button>{{ __('app.register') }}</x-primary-button>
-            </form>
-
-        @else
-            <form action="{{ route('gamenights.unregister', $gameNight) }}" method="POST" class="mt-4">
-                @csrf
-                @method('DELETE')
-                <x-danger-button>{{ __('app.unregister') }}</x-danger-button>
-            </form>
-        @endif
-    @endauth
 </x-app-layout>

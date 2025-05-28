@@ -122,4 +122,11 @@ return [
     'creatorCannotUnregister' => 'Creators cannot unregister from their own events.',
     'youAreTheCreator' => 'You are the creator of this event.',
     'error' => 'Error',
+    'noBoardGamesToSuggest' => 'You have no board games to suggest.',
+    'selectGame' => 'Select a game',
+    'alreadySuggested' => 'You have already suggested a game.',
+    'suggestionsCount' => 'Board Game Suggestions',
+    'unknownGame' => 'Unknown Game',
+    'unknownUser' => 'Unknown User',
+    'youSuggestedGame' => 'You suggested a game.',
 ];

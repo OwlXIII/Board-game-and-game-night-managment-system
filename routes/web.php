@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BoardGameReviewController;
 use App\Http\Controllers\GameNightController;
+use App\Http\Controllers\GameSuggestionController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\App;
@@ -36,15 +37,18 @@ Route::prefix('boardgames')->name('boardgames.')->group(function () {
     });
 });
 
-Route::prefix('gamenights')->name('gamenights.')->controller(GameNightController::class)->group(function () {
-    Route::middleware('auth')->group(function () {
-        Route::post('/{gameNight}/register', 'register')->name('register');
-        Route::delete('/{gameNight}/unregister', 'unregister')->name('unregister');
-        Route::post('/store', 'store')->name('store');
-        Route::get('/create', 'create')->name('create');
+Route::prefix('gamenights')->name('gamenights.')->group(function () {
+    Route::controller(GameNightController::class)->group(function () {
+        Route::middleware('auth')->group(function () {
+            Route::post('/{gameNight}/register', 'register')->name('register');
+            Route::delete('/{gameNight}/unregister', 'unregister')->name('unregister');
+            Route::post('/store', 'store')->name('store');
+            Route::get('/create', 'create')->name('create');
+        });
+        Route::get('/', 'index')->name('index');
+        Route::get('/{gameNight}', 'show')->name('show');
     });
-    Route::get('/', 'index')->name('index');
-    Route::get('/{gameNight}', 'show')->name('show');
+    Route::middleware('auth')->post('/{gameNight}/suggest', [GameSuggestionController::class, 'store'])->name('suggest');
 });
 
 Route::get('/language/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
