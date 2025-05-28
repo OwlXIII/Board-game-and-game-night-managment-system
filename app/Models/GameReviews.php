@@ -14,7 +14,7 @@ class GameReviews extends Model
      *
      * @return BelongsTo
      */
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -24,7 +24,7 @@ class GameReviews extends Model
      *
      * @return BelongsTo
      */
-    public function game() : BelongsTo
+    public function game(): BelongsTo
     {
         return $this->belongsTo(BoardGame::class, 'game_id');
     }

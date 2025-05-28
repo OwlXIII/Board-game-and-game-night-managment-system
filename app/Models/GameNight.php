@@ -34,7 +34,7 @@ class GameNight extends Model
      *
      * @return BelongsTo
      */
-    public function creator() : belongsTo
+    public function creator(): belongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
     }
@@ -44,7 +44,7 @@ class GameNight extends Model
      *
      * @return BelongsToMany
      */
-    public function games() : BelongsToMany
+    public function games(): BelongsToMany
     {
         return $this->belongsToMany(BoardGame::class, 'game_night_games');
     }
@@ -54,7 +54,7 @@ class GameNight extends Model
      *
      * @return HasMany
      */
-    public function participants() : hasMany
+    public function participants(): hasMany
     {
         return $this->hasMany(EventParticipants::class);
     }
@@ -64,7 +64,7 @@ class GameNight extends Model
      *
      * @return HasMany
      */
-    public function suggestions() : HasMany
+    public function suggestions(): HasMany
     {
         return $this->hasMany(GameSuggestions::class);
     }

@@ -20,7 +20,7 @@ class BoardGameController extends Controller
      *
      * @return View
      */
-    public function index(Request $request) : View
+    public function index(Request $request): View
     {
         $boardGames = BoardGame::search($request->all())
             ->withAvg('reviews', 'rating')
@@ -44,7 +44,7 @@ class BoardGameController extends Controller
      *
      * @return View
      */
-    public function create() : View
+    public function create(): View
     {
         return view('boardgames.create');
     }
@@ -55,7 +55,7 @@ class BoardGameController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(StoreBoardGameRequest $request) : RedirectResponse
+    public function store(StoreBoardGameRequest $request): RedirectResponse
     {
         $validated = $request->validated();
         $validated['created_by'] = auth()->id();
@@ -72,7 +72,7 @@ class BoardGameController extends Controller
      * @param BoardGame $boardGame
      * @return View
      */
-    public function show(BoardGame $boardGame) : View
+    public function show(BoardGame $boardGame): View
     {
         return view('boardgames.show', [
             'boardGame' => $boardGame->load('reviews.user'),
@@ -87,7 +87,7 @@ class BoardGameController extends Controller
      * @param BoardGame $game
      * @return View
      */
-    public function edit(BoardGame $game) : View
+    public function edit(BoardGame $game): View
     {
         return view('boardgames.edit', compact('game'));
     }
@@ -112,7 +112,7 @@ class BoardGameController extends Controller
      * @param BoardGame $boardGame
      * @return RedirectResponse
      */
-    public function destroy(BoardGame $boardGame) : RedirectResponse
+    public function destroy(BoardGame $boardGame): RedirectResponse
     {
         $boardGame->delete();
 

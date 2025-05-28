@@ -25,13 +25,12 @@ class SendGameNightReminders extends Command
 
     /**
      * Execute the console command.
+     *
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
-        $now = now();
-        $in24h = now()->addDay();
-
-        $events = GameNight::whereBetween('event_time', [$now, $in24h])->get();
+        $events = GameNight::whereBetween('event_time', [now(), now()->addDay()])->get();
 
         foreach ($events as $event) {
             $event->creator?->notify(new GameNightReminderNotification($event));

@@ -18,7 +18,7 @@ class GameNightController extends Controller
      *
      * @return View
      */
-    public function index() : View
+    public function index(): View
     {
         return view('gamenights.index', [
             'gameNights' => GameNight::where('event_time', '>=', now())->orderBy('event_time')->get()
@@ -31,7 +31,7 @@ class GameNightController extends Controller
      * @param GameNight $gameNight
      * @return View
      */
-    public function show(GameNight $gameNight) : View
+    public function show(GameNight $gameNight): View
     {
         return view('gamenights.show', compact('gameNight'));
     }
@@ -42,7 +42,7 @@ class GameNightController extends Controller
      * @return View
      */
 
-    public function create() : View
+    public function create(): View
     {
         return view('gamenights.create');
     }
@@ -54,7 +54,7 @@ class GameNightController extends Controller
      * @return RedirectResponse
      */
 
-    public function store(StoreGameNightRequest $request) : RedirectResponse
+    public function store(StoreGameNightRequest $request): RedirectResponse
     {
         $validated = $request->validated();
         GameNight::create(array_merge($validated, [
@@ -70,7 +70,7 @@ class GameNightController extends Controller
      * @param GameNight $gameNight
      * @return RedirectResponse
      */
-    public function register(GameNight $gameNight) : RedirectResponse
+    public function register(GameNight $gameNight): RedirectResponse
     {
         $userId = auth()->id();
 
@@ -96,7 +96,7 @@ class GameNightController extends Controller
      * @param GameNight $gameNight
      * @return RedirectResponse
      */
-    public function unregister(GameNight $gameNight) : RedirectResponse
+    public function unregister(GameNight $gameNight): RedirectResponse
     {
         $userId = auth()->id();
 

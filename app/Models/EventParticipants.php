@@ -22,7 +22,7 @@ class EventParticipants extends Model
      *
      * @return BelongsTo
      */
-    public function user() : BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -32,7 +32,7 @@ class EventParticipants extends Model
      *
      * @return BelongsTo
      */
-    public function gameNight() : BelongsTo
+    public function gameNight(): BelongsTo
     {
         return $this->belongsTo(GameNight::class);
     }

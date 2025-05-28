@@ -17,7 +17,7 @@ class BoardGameReviewController extends Controller
      * @param BoardGame $boardGame
      * @return RedirectResponse
      */
-    public function store(UpdateGameReviewsRequest $request, BoardGame $boardGame) : RedirectResponse
+    public function store(UpdateGameReviewsRequest $request, BoardGame $boardGame): RedirectResponse
     {
         $validated = $request->validated();
 
@@ -36,7 +36,7 @@ class BoardGameReviewController extends Controller
      * @return RedirectResponse
      */
 
-    public function destroy(BoardGame $boardGame) : RedirectResponse
+    public function destroy(BoardGame $boardGame): RedirectResponse
     {
         $validate = $boardGame->reviews()->where('user_id', auth()->id())->first();
 

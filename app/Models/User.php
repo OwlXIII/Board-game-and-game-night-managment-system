@@ -51,7 +51,7 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function games() : HasMany
+    public function games(): HasMany
     {
         return $this->hasMany(BoardGame::class, 'created_by');
     }
@@ -61,7 +61,7 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function gameReviews() : HasMany
+    public function gameReviews(): HasMany
     {
         return $this->hasMany(GameReviews::class);
     }
@@ -71,7 +71,7 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function gameNights() : HasMany
+    public function gameNights(): HasMany
     {
         return $this->hasMany(GameNight::class, 'created_by');
     }
@@ -81,7 +81,7 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function eventParticipations() : HasMany
+    public function eventParticipations(): HasMany
     {
         return $this->hasMany(EventParticipants::class);
     }
@@ -91,7 +91,7 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function gameSuggestions() : HasMany
+    public function gameSuggestions(): HasMany
     {
         return $this->hasMany(GameSuggestions::class, 'suggested_by');
     }
@@ -101,7 +101,7 @@ class User extends Authenticatable
      *
      * @return bool
      */
-    public function isAdmin() : bool
+    public function isAdmin(): bool
     {
         return $this->role === 'admin';
     }

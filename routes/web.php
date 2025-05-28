@@ -36,15 +36,15 @@ Route::prefix('boardgames')->name('boardgames.')->group(function () {
     });
 });
 
-Route::prefix('gamenights')->name('gamenights.')->group(function () {
+Route::prefix('gamenights')->name('gamenights.')->controller(GameNightController::class)->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::post('/{gameNight}/register', [GameNightController::class, 'register'])->name('register');
-        Route::delete('/{gameNight}/unregister', [GameNightController::class, 'unregister'])->name('unregister');
-        Route::post('/store', [GameNightController::class, 'store'])->name('store');
-        Route::get('/create', [GameNightController::class, 'create'])->name('create');
+        Route::post('/{gameNight}/register', 'register')->name('register');
+        Route::delete('/{gameNight}/unregister', 'unregister')->name('unregister');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/create', 'create')->name('create');
     });
-    Route::get('/', [GameNightController::class, 'index'])->name('index');
-    Route::get('/{gameNight}', [GameNightController::class, 'show'])->name('show');
+    Route::get('/', 'index')->name('index');
+    Route::get('/{gameNight}', 'show')->name('show');
 });
 
 Route::get('/language/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
