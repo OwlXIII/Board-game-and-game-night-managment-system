@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -104,5 +105,15 @@ class User extends Authenticatable
     public function isAdmin(): bool
     {
         return $this->role === 'admin';
+    }
+
+    /**
+     * Linking to GameSuggestions Table
+     *
+     * @return BelongsToMany
+     */
+    public function votedSuggestions(): BelongsToMany
+    {
+        return $this->belongsToMany(GameSuggestions::class, 'game_suggestion_votes', 'user_id', 'game_suggestion_id')->withTimestamps();
     }
 }

@@ -79,9 +79,33 @@
         @if ($gameNight->suggestions->count())
             <div class="mt-6">
                 <h3 class="text-lg font-semibold">{{ __('app.suggestedBoardGames') }}</h3>
-                <ul class="list-disc list-inside">
+                <ul class="list-disc list-inside space-y-2">
                     @foreach ($gameNight->suggestions as $suggestion)
-                        <li>{{ optional($suggestion->boardGame)->title ?? 'app.unknownGame' }} – {{ optional($suggestion->user)->name ?? 'app.unknownUser' }}</li>
+                        <li class="flex items-center justify-between">
+            <span>
+                <a href="{{ route('boardgames.show', $suggestion->boardGame) }}"
+                   class="text-blue-600 hover:underline">
+                    {{ optional($suggestion->boardGame)->title ?? __('app.unknownGame') }}
+                </a>
+                – {{ optional($suggestion->user)->name ?? __('app.unknownUser') }}
+                ({{ $suggestion->votes }} {{ __('app.votes') }})
+            </span>
+
+                            @auth
+                                @php
+                                    $hasVoted = $suggestion->voters->contains('id', auth()->id());
+                                @endphp
+
+                                @if (($isRegistered || $isCreator) && !$hasVoted)
+                                    <form action="{{ route('gamenights.vote', [$gameNight, $suggestion]) }}" method="POST" class="ml-4">
+                                        @csrf
+                                        <x-primary-button type="submit" class="text-sm">{{ __('app.vote') }}</x-primary-button>
+                                    </form>
+                                @elseif ($hasVoted)
+                                    <span class="text-sm text-green-600 ml-4">{{ __('app.alreadyVoted') }}</span>
+                                @endif
+                            @endauth
+                        </li>
                     @endforeach
                 </ul>
             </div>
