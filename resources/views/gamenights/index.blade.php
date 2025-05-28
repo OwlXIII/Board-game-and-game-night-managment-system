@@ -34,6 +34,10 @@
                 <p class="text-sm text-gray-600">
                     <strong>{{ __('app.participants') }}:</strong> {{ $gameNight->participants->count() + 1}}
                 </p>
+
+                <p class="text-sm text-gray-500 mt-1">
+                    {{ __('app.suggestionsCount') }}: {{ $gameNight->suggestions_count }}
+                </p>
             </div>
         @empty
             <p class="text-center text-gray-500">{{ __('app.noGameNights') }}</p>

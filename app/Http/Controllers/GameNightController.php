@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreGameNightRequest;
+use App\Models\BoardGame;
 use App\Models\EventParticipants;
 use App\Models\GameNight;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +22,7 @@ class GameNightController extends Controller
     public function index(): View
     {
         return view('gamenights.index', [
-            'gameNights' => GameNight::where('event_time', '>=', now())->orderBy('event_time')->get()
+            'gameNights' => GameNight::where('event_time', '>=', now())->orderBy('event_time')->withCount('suggestions')->get()
         ]);
     }
 
@@ -33,7 +34,12 @@ class GameNightController extends Controller
      */
     public function show(GameNight $gameNight): View
     {
-        return view('gamenights.show', compact('gameNight'));
+        return view('gamenights.show', [
+            'gameNight' => $gameNight->load(['participants.user', 'suggestions.boardGame', 'suggestions.user']),
+            'boardGames' => BoardGame::where('status', 'approved')
+                ->where('created_by', auth()->id())
+                ->get(),
+        ]);
     }
 
     /**
@@ -105,6 +111,7 @@ class GameNightController extends Controller
         }
 
         $gameNight->participants()->where('user_id', $userId)->delete();
+        $gameNight->suggestions()->where('suggested_by', $userId)->delete();
 
         return back()->with('app.success', __('appUnregisteredSuccessfully'));
     }

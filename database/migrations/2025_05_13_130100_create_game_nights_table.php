@@ -16,8 +16,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->dateTime('event_time');
-            $table->string('location', 255);
+            $table->string('street')->after('event_time');
+            $table->string('city')->after('street');
+            $table->string('country')->after('city');
+            $table->string('street_number')->after('street');
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

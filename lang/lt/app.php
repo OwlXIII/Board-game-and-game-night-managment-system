@@ -120,6 +120,14 @@ return [
     'unregister' => 'Išregistruoti',
     'unregisteredSuccessfully' => 'Jūsų registracija iš renginio buvo pašalinta.',
     'creatorCannotUnregister' => 'Kūrėjai negali išsiregistruoti iš savo renginių.',
-    'youAreTheCreator' => 'Jūs esate šio įvykio kūrėjas.',
+    'youAreTheCreator' => 'Jūs esate šio vakaro kūrėjas.',
     'error' => 'Klaida',
+    'noBoardGamesToSuggest' => 'Neturite jokių stalo žaidimų, kuriuos galėtumėte pasiūlyti.',
+    'selectGame' => 'Pasirinkite žaidimą',
+    'alreadySuggested' => 'Jau pasiūlėte žaidimą.',
+    'suggestionsCount' => 'Stalo žaidimų pasiūlymai',
+    'unknownGame' => 'Nežinomas žaidimas',
+    'unknownUser' => 'Nežinomas vartotojas',
+    'youSuggestedGame' => 'Pasiūlėte žaidimą.',
+
 ];
