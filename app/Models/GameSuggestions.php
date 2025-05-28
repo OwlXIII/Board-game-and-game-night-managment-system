@@ -12,7 +12,7 @@ class GameSuggestions extends Model
      *
      * @return BelongsTo
      */
-    public function gameNight() : BelongsTo
+    public function gameNight(): BelongsTo
     {
         return $this->belongsTo(GameNight::class);
     }
@@ -22,7 +22,7 @@ class GameSuggestions extends Model
      *
      * @return BelongsTo
      */
-    public function game() : BelongsTo
+    public function game(): BelongsTo
     {
         return $this->belongsTo(BoardGame::class);
     }
@@ -32,7 +32,7 @@ class GameSuggestions extends Model
      *
      * @return BelongsTo
      */
-    public function suggestedBy() : BelongsTo
+    public function suggestedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }

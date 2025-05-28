@@ -79,7 +79,7 @@ class BoardGame extends Model
      *
      * @return BelongsTo
      */
-    public function creator() : BelongsTo
+    public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -89,7 +89,7 @@ class BoardGame extends Model
      *
      * @return HasMany
      */
-    public function reviews() : HasMany
+    public function reviews(): HasMany
     {
         return $this->hasMany(GameReviews::class, 'game_id');
     }
@@ -99,7 +99,7 @@ class BoardGame extends Model
      *
      * @return BelongsToMany
      */
-    public function gameNights() : BelongsToMany
+    public function gameNights(): BelongsToMany
     {
         return $this->belongsToMany(GameNight::class, 'game_night_games');
     }
@@ -109,7 +109,7 @@ class BoardGame extends Model
      *
      * @return HasMany
      */
-    public function suggestions() : HasMany
+    public function suggestions(): HasMany
     {
         return $this->hasMany(GameSuggestions::class);
     }

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('game_nights', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->dateTime('event_time');
             $table->string('location', 255);
             $table->foreignId('created_by')->constrained('users')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
