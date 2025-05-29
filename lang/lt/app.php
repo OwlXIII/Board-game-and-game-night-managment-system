@@ -134,4 +134,6 @@ return [
     'alreadyVoted' => 'Jau balsavote.',
     'invalidVote' => 'Neteisingas balsavimas.',
     'successfullyVoted' => 'Sėkmingai balsuota.',
+    'seeAllGameNights' => 'Visi žaidimų vakarai',
+    'upcomingGameNights' => 'Ateinantys žaidimų vakarai',
 ];

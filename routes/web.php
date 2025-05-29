@@ -3,6 +3,7 @@
 use App\Http\Controllers\BoardGameReviewController;
 use App\Http\Controllers\GameNightController;
 use App\Http\Controllers\GameSuggestionController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\App;
@@ -11,9 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\BoardGameController;
 use App\Http\Controllers\AdminController;
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::redirect('/dashboard', '/');
 
