@@ -134,4 +134,6 @@ return [
     'alreadyVoted' => 'You have already voted.',
     'invalidVote' => 'Invalid vote target.',
     'successfullyVoted' => 'Successfully voted.',
+    'seeAllGameNights' => 'See all game nights',
+    'upcomingGameNights' => 'Upcoming Game Nights',
 ];
