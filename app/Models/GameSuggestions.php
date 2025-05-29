@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class GameSuggestions extends Model
 {
@@ -36,5 +37,15 @@ class GameSuggestions extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'suggested_by');
+    }
+
+    /**
+     * Linking to User Table
+     *
+     * @return BelongsToMany
+     */
+    public function voters(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'game_suggestion_votes', 'game_suggestion_id', 'user_id')->withTimestamps();
     }
 }

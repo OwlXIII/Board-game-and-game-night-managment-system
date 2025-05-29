@@ -129,5 +129,9 @@ return [
     'unknownGame' => 'Nežinomas žaidimas',
     'unknownUser' => 'Nežinomas vartotojas',
     'youSuggestedGame' => 'Pasiūlėte žaidimą.',
-
+    'vote' => 'Balsuoti',
+    'votes' => 'Balsai',
+    'alreadyVoted' => 'Jau balsavote.',
+    'invalidVote' => 'Neteisingas balsavimas.',
+    'successfullyVoted' => 'Sėkmingai balsuota.',
 ];

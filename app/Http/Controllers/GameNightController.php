@@ -34,12 +34,24 @@ class GameNightController extends Controller
      */
     public function show(GameNight $gameNight): View
     {
-        return view('gamenights.show', [
-            'gameNight' => $gameNight->load(['participants.user', 'suggestions.boardGame', 'suggestions.user']),
-            'boardGames' => BoardGame::where('status', 'approved')
-                ->where('created_by', auth()->id())
-                ->get(),
+        $gameNight->load([
+            'participants.user',
+            'suggestions.boardGame',
+            'suggestions.user'
         ]);
+
+        $gameNight->suggestions = $gameNight->suggestions
+            ->sortBy(function ($suggestion) {
+                return strtolower(optional($suggestion->boardGame)->title ?? '');
+            })
+            ->sortByDesc('votes')
+            ->values();
+
+        $boardGames = BoardGame::where('status', 'approved')
+            ->where('created_by', auth()->id())
+            ->get();
+
+        return view('gamenights.show', compact('gameNight', 'boardGames'));
     }
 
     /**

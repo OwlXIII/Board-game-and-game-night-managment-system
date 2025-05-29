@@ -129,4 +129,9 @@ return [
     'unknownGame' => 'Unknown Game',
     'unknownUser' => 'Unknown User',
     'youSuggestedGame' => 'You suggested a game.',
+    'vote' => 'Vote',
+    'votes' => 'Votes',
+    'alreadyVoted' => 'You have already voted.',
+    'invalidVote' => 'Invalid vote target.',
+    'successfullyVoted' => 'Successfully voted.',
 ];

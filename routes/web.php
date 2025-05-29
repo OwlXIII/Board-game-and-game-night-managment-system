@@ -48,7 +48,12 @@ Route::prefix('gamenights')->name('gamenights.')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{gameNight}', 'show')->name('show');
     });
-    Route::middleware('auth')->post('/{gameNight}/suggest', [GameSuggestionController::class, 'store'])->name('suggest');
+    Route::controller(GameSuggestionController::class)->group(function () {
+        Route::middleware('auth')->group(function () {
+            Route::post('/{gameNight}/suggest', 'store')->name('suggest');
+            Route::post('/{gameNight}/vote/{suggestion}', 'vote')->name('vote');
+        });
+    });
 });
 
 Route::get('/language/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
