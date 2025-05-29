@@ -8,22 +8,22 @@ use Illuminate\View\Component;
 
 class GameNightTile extends Component
 {
-    public $gameNight;
+    public $night;
     public $delay;
 
     /**
      * Create a new component instance.
      */
-    public function __construct($gameNight, $delay = 0)
+    public function __construct($night, $delay = 0)
     {
-        $this->$gameNight = $gameNight;
+        $this->night = $night;
         $this->delay = $delay;
     }
 
     /**
      * Get the view / contents that represent the component.
      */
-    public function render(): View|Closure|string
+    public function render(): View
     {
         return view('components.homepage.game-night-tile');
     }
