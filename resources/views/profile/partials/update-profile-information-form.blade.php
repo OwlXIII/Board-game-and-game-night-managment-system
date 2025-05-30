@@ -1,10 +1,10 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-green-400">
             {{ __('app.profileInformation') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
+        <p class="mt-1 text-sm text-white">
             {{ __('app.profileDescription') }}
         </p>
     </header>
@@ -18,15 +18,13 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('app.name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </div>
+            <!-- Name -->
 
-        <div>
-            <x-input-label for="email" :value="__('app.email')" />
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+            <x-auth.text-field id="name" type="text" autocomplete="name" class="mt-4"/>
+
+            <!-- Email Address -->
+
+            <x-auth.text-field id="email" type="email" autocomplete="username" class="mt-4"/>
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
