@@ -12,7 +12,7 @@
 
     <div class="flex justify-end mb-4">
         @auth
-            <x-suggest-button />
+            <x-buttons.suggest-button />
         @endauth
     </div>
 
