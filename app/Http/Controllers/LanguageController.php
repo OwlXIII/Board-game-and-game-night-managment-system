@@ -18,6 +18,8 @@ class LanguageController extends Controller
         abort_if(!in_array($lang, ['en', 'lt']), 400);
         session()->put('locale', $lang);
 
+        logger('Language switched to: ' . $lang);
+
         return redirect()->back();
     }
 }

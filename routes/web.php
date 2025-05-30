@@ -55,7 +55,9 @@ Route::prefix('gamenights')->name('gamenights.')->group(function () {
     });
 });
 
-Route::get('/language/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+Route::middleware('language')->group(function () {
+    Route::get('/language/{lang}', [LanguageController::class, 'switchLang'])->name('lang.switch');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
