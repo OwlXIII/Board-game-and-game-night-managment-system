@@ -16,3 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
         easing: 'ease-in-out',
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-vote-bar]").forEach(el => {
+        const target = el.dataset.voteBar;
+        el.style.width = '0%';
+        setTimeout(() => {
+            el.style.width = target + '%';
+        }, 400);
+    });
+});

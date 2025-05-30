@@ -1,12 +1,13 @@
-@props(['id', 'rows' => 3, 'required' => false])
+@props(['id', 'name' => null, 'rows' => 3, 'required' => false,])
 
-<div>
-    <x-input-label :for="$id" :value="__('app.' . $id)" class="text-green-400" />
-    <textarea
-        :id="$id"
-        :name="$id"
-        :rows="$rows"
-        :required="$required"
-        class="w-full text-white bg-slate-600 border-green-400 rounded mt-1 p-2"
-    >{{ old($id) }}</textarea>
+@php
+    $name = $name ?? $id;
+@endphp
+
+<div class="mb-4">
+    <x-input-label :for="$id" :value="__('app.' . $name)" class="text-green-400" />
+    <textarea :id="$id" :name="$name" rows="{{ $rows }}"
+            @if($required) required @endif
+            class="w-full text-white bg-slate-600 border-green-400 rounded mt-1 p-2"
+            >{{ old($name) }}</textarea>
 </div>
