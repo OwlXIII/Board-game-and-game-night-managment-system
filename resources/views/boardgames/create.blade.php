@@ -9,7 +9,7 @@
             <x-homepage.header :title="__('app.suggestBoardGame')" />
         </x-slot>
 
-        <div class="py-8 max-w-3xl mx-auto">
+        <div class="mt-8 max-w-3xl mx-auto py-8 bg-slate-800 p-6 rounded-lg shadow text-slate-100">
             <form action="{{ route('boardgames.store') }}" method="POST" class="space-y-6">
                 @csrf
 
@@ -22,7 +22,7 @@
                 <x-input-label class="text-green-400" for="category" :value="__('app.category')" />
                 <x-text-input id="category" name="category" type="text" class="w-full" />
 
-                <div class="flex space-x-4">
+                <div class="flex space-x-4 justify-center">
                     <div>
                         <x-input-label class="text-green-400" for="min_players" :value="__('app.minPlayers')" />
                         <x-text-input id="min_players" name="min_players" type="number" min="{{PlayerLimit::MIN->value}}" class="w-full" required />
@@ -46,9 +46,11 @@
                 <x-input-label class="text-green-400" for="rules" :value="__('app.rules')" />
                 <textarea id="rules" name="rules" class="w-full border rounded p-2 bg-slate-600 border-green-400" rows="3"></textarea>
 
-                <x-primary-button>
-                    {{ __('app.submit') }}
-                </x-primary-button>
+                <div class="mt-6 mb-4 flex justify-center gap-4">
+                    <x-primary-button>
+                        {{ __('app.submit') }}
+                    </x-primary-button>
+                </div>
             </form>
         </div>
     </div>

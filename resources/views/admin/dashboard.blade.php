@@ -1,5 +1,4 @@
 <x-app-layout>
-    <div data-aos="fade-up" data-aos-delay="100">
         <x-slot name="header">
             <x-homepage.header :title="__('app.adminDashboard')" />
         </x-slot>
@@ -11,7 +10,7 @@
                     <x-dashboard.alert :message="session('success')" />
                 @endif
 
-                    <div class="bg-slate-800 rounded-lg p-6 shadow">
+                    <div data-aos="fade-up" data-aos-delay="100" class="bg-slate-800 rounded-lg p-6 shadow">
                         <x-table class="table-auto w-full border-separate border-spacing-0">
                             <thead>
                             <tr class="bg-green-800 text-white">
@@ -23,7 +22,7 @@
                             </thead>
                             <tbody>
                             @foreach ($users as $user)
-                                <x-dashboard.user-row :user="$user" />
+                                <x-dashboard.user-row :user="$user" :delay="$loop->index * 200"/>
                             @endforeach
                             </tbody>
                         </x-table>
@@ -31,5 +30,4 @@
 
             </div>
         </div>
-    </div>
 </x-app-layout>

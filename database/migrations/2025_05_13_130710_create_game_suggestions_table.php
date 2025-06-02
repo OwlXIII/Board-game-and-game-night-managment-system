@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('suggested_by')->constrained('users')->onDelete('cascade');
             $table->unsignedInteger('votes')->default(0);
             $table->timestamps();
-            $table->unique(['game_night_id', 'board_game_id', 'suggested_by']);
+            $table->unique(['game_night_id', 'game_id', 'suggested_by']);
         });
     }
 
