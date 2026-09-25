@@ -22,3 +22,4 @@ MeepleAdventure.sqlite
 /.nova
 /.vscode
 /.zed
+/.vagrant
